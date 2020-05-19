@@ -14,7 +14,7 @@ public class Evaluator {
         CustomStack<Float> valueStack = new CustomStack<Float>();
         CustomStack<Operator> operatorStack = new CustomStack<Operator>();
 
-        String[] components = expression.split(" ");
+        String[] components = stringCreateComponents(expression);
         for (String component : components) {
             if (isNumber(component)) {
                 valueStack.push(Float.parseFloat(component));
@@ -32,6 +32,19 @@ public class Evaluator {
         }
 
         return valueStack.pop();
+    }
+
+    public static String[] stringCreateComponents(String expression) {
+        for (int i = 0; i < expression.length(); i++) {
+            if (expression.charAt(i) == '(') {
+                expression = expression.substring(0, i + 1) + " " + expression.substring(i + 1);
+                i++;
+            } else if (expression.charAt(i) == ')') {
+                expression = expression.substring(0, i) + " " + expression.substring(i);
+                i++;
+            }
+        }
+        return expression.split(" ");
     }
 
     private static boolean isNumber(String str) {
