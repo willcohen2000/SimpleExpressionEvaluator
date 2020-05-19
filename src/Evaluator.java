@@ -24,8 +24,9 @@ public class Evaluator {
                 Operator currentOperator = operatorStack.pop();
                 float[] values = {valueStack.pop(), valueStack.pop()};
                 valueStack.push(currentOperator.operation(values));
-            } else {
+            } else if (!component.equals("(")) {
                 System.out.println("Invalid format. Example of a valid input: ( ( 5 + 7 ) * 8 )");
+                System.out.println("Invalid component: " + component);
                 return -1;
             }
         }

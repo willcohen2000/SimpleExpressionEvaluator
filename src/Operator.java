@@ -7,7 +7,18 @@ public class Operator {
     }
 
     public float operation(float[] values) {
-        return
+        switch (operator) {
+            case "+":
+                return (values[1] + values[0]);
+            case "-":
+                return (values[1] - values[0]);
+            case "/":
+                return (values[1] / values[0]);
+            case "*":
+                return (values[1] * values[0]);
+            default:
+                return 0;
+        }
     }
 
     public static boolean isOperator(String str) {
